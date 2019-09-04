@@ -62,6 +62,10 @@ class DetailForm extends React.Component {
   };
 
   renderNodeDetail = () => {
+
+    console.log("node this.item")
+    console.log(this.item)
+    
     const { form } = this.props;
     const { label } = this.item.getModel();
 
@@ -75,8 +79,12 @@ class DetailForm extends React.Component {
   };
 
   renderEdgeDetail = () => {
+
+    console.log("edge this.item")
+    console.log(this.item)
+    
     const { form } = this.props;
-    const { label = '', shape = 'flow-smooth' } = this.item.getModel();
+    const { label = '', shape = 'flow-smooth', expr = '' } = this.item.getModel();
 
     return (
       <Fragment>
@@ -89,6 +97,11 @@ class DetailForm extends React.Component {
           {form.getFieldDecorator('shape', {
             initialValue: shape,
           })(this.renderEdgeShapeSelect())}
+        </Item>
+        <Item label="Expression" {...inlineFormItemLayout}>
+          {form.getFieldDecorator('expr', {
+            initialValue: expr,
+          })(<Input onBlur={this.handleSubmit} />)}
         </Item>
       </Fragment>
     );
@@ -108,6 +121,9 @@ class DetailForm extends React.Component {
   };
 
   render() {
+
+    console.log("DetailForm Props: ")
+    console.log(this.props)
     const { type } = this.props;
 
     if (!this.item) {
